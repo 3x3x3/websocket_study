@@ -17,7 +17,7 @@ def main():
         # HandShake Start ####################
 
         raw_key = bytes(random.getrandbits(8) for _ in range(16))
-        sec_ws_key = base64.b64encode(raw_key).decode()
+        sec_ws_key = base64.b64encode(raw_key).decode("utf-8")
 
         req = "GET / HTTP/1.1\r\n" + \
               "Upgrade: websocket\r\n" \
