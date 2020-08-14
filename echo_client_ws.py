@@ -20,6 +20,7 @@ def on_close(ws):
 
 def on_open(ws):
     print("on_open")
+    ws.send("hello")
 
 
 if __name__ == "__main__":

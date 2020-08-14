@@ -5,6 +5,7 @@ import base64
 import hashlib
 import re
 
+MAGIC_NUMBER = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 HOST = "localhost"
 PORT = 5858
 
@@ -42,7 +43,7 @@ def main():
         re_match = regex.search(buffer.decode("utf-8"))
         resp_sec_ws_acpt = re_match.group(1)
 
-        chk_sec_ws_acpt = bytes(sec_ws_key + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11", encoding="utf-8")
+        chk_sec_ws_acpt = bytes(sec_ws_key + MAGIC_NUMBER, encoding="utf-8")
         chk_sec_ws_acpt = base64.b64encode(hashlib.sha1(chk_sec_ws_acpt).digest()).decode("utf-8")
 
         if resp_sec_ws_acpt == chk_sec_ws_acpt:
